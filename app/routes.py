@@ -49,3 +49,8 @@ def register():
         flash('Registration successful.')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register for a new account', form=form)
+
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
