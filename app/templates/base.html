@@ -3,12 +3,12 @@
       {% if title %}
       <title>{{ title }}</title>
       {% else %}
-      <title>Welcome to the Daily Donut Tracker</title>
+      <title>Welcome to FlaskBlog</title>
       {% endif %}
     </head>
     <body>
         <div>
-            Donut Tracker: 
+            Flask Blog: 
             <a href="{{ url_for('index') }}">Home</a>
             {% if current_user.is_anonymous %}
             <a href="{{ url_for('login') }}">Log In</a>
