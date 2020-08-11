@@ -13,6 +13,7 @@ from datetime import datetime
 def index():
     return render_template('index.html', title='Donut Tracker')
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -30,11 +31,11 @@ def login():
         return redirect(next_page)
     return render_template('login.html', title='Log in', form=form)
 
+
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
-
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -49,16 +50,17 @@ def register():
         db.session.commit()
         flash('Registration successful.')
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register for a new account', 
+    return render_template('register.html', title='Register for a new account',
                            form=form)
+
 
 @app.route('/user/<username>')
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     posts = [
-        {'author':user,'body':'Hello, world!'},
-        {'author':user,'body':'A second post.'}
+        {'author': user, 'body': 'Hello, world!'},
+        {'author': user, 'body': 'A second post.'}
     ]
     return render_template('user.html', user=user, posts=posts)
 
