@@ -51,3 +51,6 @@ class EditProfileForm(FlaskForm):
             if user is not None:
                 raise ValidationError('This username is unavailable.')
 
+
+class EmptyForm(FlaskForm):
+    submit = SubmitField('Submit')
