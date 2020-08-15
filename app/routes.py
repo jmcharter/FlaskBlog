@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm
 from app.models import User
 from werkzeug.urls import url_parse
 from datetime import datetime
@@ -11,7 +11,8 @@ from datetime import datetime
 @app.route('/index')
 @login_required
 def index():
-    return render_template('index.html', title='Donut Tracker')
+    form = PostForm()
+    return render_template('index.html', title='Donut Tracker', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
