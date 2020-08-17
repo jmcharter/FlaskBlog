@@ -23,13 +23,13 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Register')
 
     def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first()
+        user = User.query.filter_by(username=username.data.lower()).first()
         if user is not None:
             raise ValidationError('This username is unavailable, \
                                    please choose another.')
 
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
+        user = User.query.filter_by(email=email.data.lower()).first()
         if user is not None:
             raise ValidationError(
                 'This email address is already in use, \
@@ -47,8 +47,8 @@ class EditProfileForm(FlaskForm):
 
     def validate_username(self, username):
         if username.data != self.original_username:
-            user = User.query.filter_by(username=self.username.data).first()
-            if user is not None:
+            user = User.query.filter_by(username=self.username.data.lower()).first()
+            if user is not None and user.username != self.original_username.lower():
                 raise ValidationError('This username is unavailable.')
 
 

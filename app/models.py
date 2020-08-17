@@ -16,6 +16,7 @@ followers = db.Table(
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    display_name = db.Column(db.String(64), index=True, unique=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
@@ -31,6 +32,9 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return f'<User {self.username}>'
+
+    def set_username(self):
+        self.username = self.display_name.lower()
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
