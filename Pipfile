@@ -16,6 +16,8 @@ flask-migrate = "*"
 flask-login = "*"
 python-dotenv = "*"
 email-validator = "*"
+flask-mail = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.8"
