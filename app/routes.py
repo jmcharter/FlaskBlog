@@ -45,7 +45,8 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data.lower()).first()
+        user = User.query.filter_by(
+            username=form.username.data.lower()).first()
         if user is None or not user.check_password(form.password.data):
             flash('Incorrect username or password.')
             return redirect(url_for('login'))
@@ -93,8 +94,8 @@ def user(username):
     prev_url = url_for('user', username=user.username, page=posts.prev_num) \
         if posts.has_prev else None
     form = EmptyForm()
-    return render_template('user.html', user=user, posts=posts.items, \
-        form=form, next_url=next_url, prev_url=prev_url)
+    return render_template('user.html', user=user, posts=posts.items,
+                           form=form, next_url=next_url, prev_url=prev_url)
 
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
@@ -154,6 +155,7 @@ def unfollow(username):
     else:
         return redirect(url_for('index'))
 
+
 @app.route('/explore')
 @login_required
 def explore():
@@ -167,6 +169,7 @@ def explore():
     return render_template('index.html', title='Explore', posts=posts.items,
                            next_url=next_url, prev_url=prev_url)
 
+
 @app.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
     if current_user.is_authenticated:
@@ -176,10 +179,12 @@ def reset_password_request():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
             send_password_reset_email(user)
-        flash('Check your email for instructions on how to reset your password')
+        flash(
+            'Check your email for instructions on how to reset your password')
         return redirect(url_for('login'))
-    return render_template('reset_password_request.html', 
+    return render_template('reset_password_request.html',
                            title='Reset Password', form=form)
+
 
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
