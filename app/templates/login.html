@@ -1,29 +1,36 @@
 {% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='signin.css') }}">
+{% endblock %}
 
 {% block content %}
-    <h1>Sign In</h1>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
-            {% for error in form.username.errors %}
-            <span style="color:red">[{{ error }}]</span>
-            {% endfor %}
+    
+    <div class="text-center">
+        <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+        <form class="form-signin" action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.username.label(class="sr-only") }}<br>
+                {{ form.username(size=32, class="form-control",placeholder="Email address") }}<br>
+                {% for error in form.username.errors %}
+                <span style="color:red">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.password.label(class="sr-only") }}<br>
+                {{ form.password(size=32, class="form-control",placeholder="Password") }}<br>
+                {% for error in form.password.errors %}
+                <span style="color:red">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+            <p>{{ form.submit() }}</p>
+        </form>
+        <p>Forgot your password?
+            <a href="{{ url_for('reset_password_request') }}">Click here to reset.</a>
         </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
-            {% for error in form.password.errors %}
-            <span style="color:red">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
-    </form>
-    <p>Forgot your password?
-        <a href="{{ url_for('reset_password_request') }}">Click here to reset.</a>
-    </p>
 
-    <p>Or new users <a href="{{ url_for('register') }}">click here to register.</a></p>
+        <p>Or new users <a href="{{ url_for('register') }}">click here to register.</a></p>
+    </div>
+
 {% endblock %}
