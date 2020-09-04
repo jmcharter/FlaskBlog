@@ -10,15 +10,14 @@
         <form class="form-signin" action="" method="post" novalidate>
             {{ form.hidden_tag() }}
             <p>
-                {{ form.username.label(class="sr-only") }}<br>
-                {{ form.username(size=32, class="form-control",placeholder="Email address") }}<br>
+                {{ form.username.label(class="sr-only") }}
+                {{ form.username(size=32, class="form-control",placeholder="Username") }}
                 {% for error in form.username.errors %}
                 <span style="color:red">[{{ error }}]</span>
                 {% endfor %}
-            </p>
-            <p>
-                {{ form.password.label(class="sr-only") }}<br>
-                {{ form.password(size=32, class="form-control",placeholder="Password") }}<br>
+
+                {{ form.password.label(class="sr-only") }}
+                {{ form.password(size=32, class="form-control",placeholder="Password") }}
                 {% for error in form.password.errors %}
                 <span style="color:red">[{{ error }}]</span>
                 {% endfor %}
