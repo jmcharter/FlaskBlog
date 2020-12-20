@@ -5,4 +5,16 @@ body {
     padding: 3rem 1.5rem;
     text-align: center;
   }
-  
+
+
+table {
+  width: 100%;
+}
+
+tr {
+  width: 100%
+}
+
+.table td {
+  vertical-align: middle;
+}
