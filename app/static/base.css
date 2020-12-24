@@ -18,3 +18,7 @@ tr {
 .table td {
   vertical-align: middle;
 }
+
+.avatar-col {
+  width: 10%;
+}
