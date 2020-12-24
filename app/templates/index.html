@@ -8,7 +8,7 @@
         <form action="" method="POST">
             {{ form.hidden_tag() }}
             <p>
-                {{ form.post(cols=32, rows=4,placeholder="What's on your mind?") }}
+                {{ form.post(class="post",cols=32, rows=4,placeholder="What's on your mind?") }}
                 {% for error in form.post.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}

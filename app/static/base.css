@@ -20,5 +20,12 @@ tr {
 }
 
 .avatar-col {
-  width: 10%;
+  width: 5%;
+}
+
+.post {
+  resize: both;
+  border: 2px solid darkgray;  
+  border-radius: 5%;
+
 }
