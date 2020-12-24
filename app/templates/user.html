@@ -30,7 +30,9 @@
         </tr>
     </table>
     <hr>
-    <table class="table-striped">
+    <table class="table table-striped">
+        <col class="avatar-col">
+        <col class="content-col">
     {% for post in posts %}
         {% include '_post.html' %}
     {% endfor %}
